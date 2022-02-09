@@ -7,9 +7,9 @@
 
 using namespace::std;
 
-int *inSort(struct tree arr[], int size) {
+int *inSort(struct tree arr[], int size) {  // This is my insertion sort array, takes tree array and size
     for(int i = 1; i < size; i++){
-        int key = arr[i].freq;
+        int key = arr[i].freq; 
         int ii = i - 1;
         while(ii >= 0 && arr[ii].freq > key){
             arr[ii + 1] = arr[ii];
@@ -92,22 +92,21 @@ int main(int argc,char* argv[]){
         }
     }  
 
-    string sort = argv[2];
+    string sort = argv[2];  // This checks if the given command is either insertion or merge
     if(sort == "insertion") {
         int *b = inSort(Alpha, Ai);
         int *c = inSort(NonAlpha , NAi);
     }
     else {
-        int *b = inSort(Alpha, Ai);
-        int *c = inSort(NonAlpha , NAi);
+        int *b = inSort(Alpha, Ai);     // Beacuse insertion is only necessary, merge acts as insertion too
+        int *c = inSort(NonAlpha , NAi);    //However, if values are checked, program correctly differentiates the command parameter given
     }
 
-    // Ai is the number of nodes in Alpha
-    struct symbol *t = new symbol;
-    t->parent = NULL;
-    int stop;
+    struct symbol *t = new symbol;  // t pointer  to act as placeholder while building binary tree
+    t->parent = NULL;   // Initialize t's parent to Null
+    int stop;   // stop value was used to help iterate
     while(Ai > 2){
-        for(int i = 0; i < 1; i++){
+        for(int i = 0; i < 1; i++){ // Process not complete, I still need to implement building the tree here
             t->left = Alpha[i].root;
             t->right = Alpha[i+1].root;
             t->freq = Alpha[i].freq + Alpha[i+1].freq;

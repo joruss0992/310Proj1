@@ -7,8 +7,21 @@
 
 using namespace::std;
 
+int *inSort(struct tree arr[], int size) {
+    for(int i = 1; i < size; i++){
+        int key = arr[i].freq;
+        int ii = i - 1;
+        while(ii >= 0 && arr[ii].freq > key){
+            arr[ii + 1] = arr[ii];
+            ii = ii - 1;
+        }
+        arr[ii + 1].freq = key;
+    }
+    return 0;
+}
 
-int main(){
+
+int main(int argc,char* argv[]){
     struct symbol Symbols[NSYMBOLS];    // Symbols array for structure
 
     ifstream file;  
@@ -45,9 +58,11 @@ int main(){
             Symbols[curIn].freq = a;    // set the current Char's frequency to a
             if((curIn >= 65 && curIn <= 90) || (curIn >= 97 && curIn <= 122)){  // This checks if Char is Alphabetic
                 AC++;   // If so keep track of total number of Alphabetic Char's
+
             }
             else{
                 NAC++;  // Else, it is a NonAlphabetic Char
+
             }
 
         }
@@ -75,7 +90,39 @@ int main(){
                 NAi++;
             }
         }
+    }  
+
+    string sort = argv[2];
+    if(sort == "insertion") {
+        int *b = inSort(Alpha, Ai);
+        int *c = inSort(NonAlpha , NAi);
+        cout << "Insertion" << endl;
     }
+    else {
+        int *b = inSort(Alpha, Ai);
+        int *c = inSort(NonAlpha , NAi);
+        cout << "Merge!" << endl;
+    }
+
+    // Ai is the number of nodes in Alpha
+    struct symbol *t = new symbol;
+    t->parent = NULL;
+    int stop;
+    while(Ai > 2){
+        for(int i = 0; i < 1; i++){
+            t->left = Alpha[i].root;
+            t->right = Alpha[i+1].root;
+            t->freq = Alpha[i].freq + Alpha[i+1].freq;
+            for(stop = 0; stop < Ai; stop++){
+                Alpha[stop] = Alpha[stop + 1];
+                Ai--;
+                Alpha[AC - 1];
+            }
+
+        }
+    }
+    
+    cout << "this is a test";
     
     return 0;
 }

@@ -96,12 +96,10 @@ int main(int argc,char* argv[]){
     if(sort == "insertion") {
         int *b = inSort(Alpha, Ai);
         int *c = inSort(NonAlpha , NAi);
-        cout << "Insertion" << endl;
     }
     else {
         int *b = inSort(Alpha, Ai);
         int *c = inSort(NonAlpha , NAi);
-        cout << "Merge!" << endl;
     }
 
     // Ai is the number of nodes in Alpha
@@ -121,8 +119,6 @@ int main(int argc,char* argv[]){
 
         }
     }
-    
-    cout << "this is a test";
     
     return 0;
 }

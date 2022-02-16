@@ -8,14 +8,15 @@
 using namespace::std;
 
 int *inSort(struct tree arr[], int size) {  // This is my insertion sort array, takes tree array and size
-    for(int i = 1; i < size; i++){
-        int key = arr[i].freq; 
-        int ii = i - 1;
-        while(ii >= 0 && arr[ii].freq > key){
-            arr[ii + 1] = arr[ii];
-            ii = ii - 1;
+    struct tree key[1]; // Temporary key for replacing shifting elements
+    for(int i = 1; i < size; i++){  // for loop iterates through whole array
+        key[0] = arr[i];    // key = arr[i]
+        int ii = i - 1;     // ii = i - 1
+        while(ii >= 0 && arr[ii].freq > key[0].freq){   // while front of array hasn't been reached AND freq's need to be switched 
+            arr[ii + 1] = arr[ii];  // shifts nodes to the right, creating space at current node i
+            ii = ii - 1;    // ii decremented, checking if the front of the array has been passed
         }
-        arr[ii + 1].freq = key;
+        arr[ii + 1] = key[0];   // current element being observed put into proper place
     }
     return 0;
 }
@@ -109,15 +110,16 @@ int main(int argc,char* argv[]){
         for(int i = 0; i < 1; i++){ // Process not complete, I still need to implement building the tree here
             t->left = Alpha[i].root;
             t->right = Alpha[i+1].root;
-            t->freq = Alpha[i].freq + Alpha[i+1].freq;
-            for(stop = 0; stop < Ai; stop++){
+            t->freq = Alpha[i].freq + Alpha[i+1].freq;  // This function isn't working the way I need it to
+            for(stop = 0; stop < Ai; stop++){           // I am going to get the 1st part functioning tonight!!!
                 Alpha[stop] = Alpha[stop + 1];
                 Ai--;
-                Alpha[AC - 1];
             }
-
         }
     }
+
+
+
     
     return 0;
 }
